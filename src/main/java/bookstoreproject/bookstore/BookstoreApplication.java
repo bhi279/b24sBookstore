@@ -16,11 +16,11 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner bookDemo(BookRepository repository) {
+	public CommandLineRunner bookDemo(BookRepository bookRepository) {
 		return (args) -> {
-			repository.save(new Book("Akun seikkailut", "Aku Ankka", "A1234B5678", 2000, 12.34));
-			repository.save(new Book("Iineksen iltapäiväkahvit", "Iines Ankka", "A4321B8765", 2000, 56.78));
-			repository.save(new Book("Roopen säästövinkit", "Roope Ankka", "A3412B7856", 2000, 90.12));
+			bookRepository.save(new Book("Akun seikkailut", "Aku Ankka", "A1234B5678", 2000, 12.34));
+			bookRepository.save(new Book("Iineksen iltapäiväkahvit", "Iines Ankka", "A4321B8765", 2000, 56.78));
+			bookRepository.save(new Book("Roopen säästövinkit", "Roope Ankka", "A3412B7856", 2000, 90.12));
 		};
 
 	}
