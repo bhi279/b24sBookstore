@@ -1,7 +1,7 @@
 package bookstoreproject.bookstore.web;
 
+import bookstoreproject.bookstore.domain.Book;
 import bookstoreproject.bookstore.domain.BookRepository;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,8 +18,8 @@ public class BookController {
         return "index";
     }
 
-    @RequestMapping(value = { "/", "/booklist" })
-    public String booklist(Model model) {
+    @GetMapping("/booklist")
+    public String showBooks(Model model) {
         model.addAttribute("books", bookRepository.findAll());
         return "booklist";
     }
