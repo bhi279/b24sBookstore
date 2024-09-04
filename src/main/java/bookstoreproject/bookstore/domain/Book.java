@@ -1,6 +1,20 @@
 package bookstoreproject.bookstore.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Book {
+    // used for creating id column of the table
+    // (from class material)
+    @Id
+
+    // generates automatically a unique primary key for every new entity object
+    // (from class material)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     String title, author, isbn;
     int publicationYear;
     double price;
