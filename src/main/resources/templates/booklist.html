@@ -10,13 +10,15 @@
     <h1>Books in our store!</h1>
     <table>
         <tr>
-            <th>Book title </th>
+            <th>Book id</th>
+            <th>Book title</th>
             <th>Book author</th>
             <th>ISBN</th>
             <th>Publication year</th>
             <th>Price</th>
         </tr>
         <tr th:each="book : ${books}">
+            <td th:text="${book.id}"></td>
             <td th:text="${book.title}"></td>
             <td th:text="${book.author}"></td>
             <td th:text="${book.isbn}"></td>
