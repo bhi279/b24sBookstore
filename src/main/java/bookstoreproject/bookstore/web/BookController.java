@@ -29,13 +29,13 @@ public class BookController {
     }
 
     @GetMapping("/add")
-    public String addStudent(Model model) {
+    public String addBook(Model model) {
         model.addAttribute("book", new Book());
         return "addbook";
     }
 
     @PostMapping("/save")
-    public String save(Book book) {
+    public String saveBook(Book book) {
         bookRepository.save(book);
         return "redirect:booklist";
     }
@@ -44,5 +44,11 @@ public class BookController {
     public String deleteBook(@PathVariable("id") Long id, Model model) {
         bookRepository.deleteById(id);
         return "redirect:../booklist";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editBook(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("book", bookRepository.findById(id));
+        return "editbook";
     }
 }
