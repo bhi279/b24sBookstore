@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 public class Book {
@@ -18,8 +20,14 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String title, author, isbn;
+    @NotBlank(message = "Title cannot be empty")
+    private String title;
+
+    private String author, isbn;
+
     private int publicationYear;
+
+    @Positive(message = "Price cannot be less than 0")
     private double price;
 
     @ManyToOne
