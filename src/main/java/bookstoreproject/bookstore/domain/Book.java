@@ -24,7 +24,6 @@ public class Book {
     private String title;
 
     private String author, isbn;
-
     private int publicationYear;
 
     @Positive(message = "Price cannot be less than 0")
