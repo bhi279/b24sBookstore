@@ -6,6 +6,7 @@ import bookstoreproject.bookstore.domain.CategoryRepository;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,9 +23,9 @@ public class BookController {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @GetMapping("/index")
-    public String showIndexPage() {
-        return "index";
+    @GetMapping("/login")
+    public String showLoginPage() {
+        return "login";
     }
 
     @GetMapping("/booklist")
@@ -34,6 +35,7 @@ public class BookController {
     }
 
     @GetMapping("/add")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String addBook(Model model) {
         model.addAttribute("book", new Book());
         model.addAttribute("categories", categoryRepository.findAll());
@@ -41,6 +43,7 @@ public class BookController {
     }
 
     @PostMapping("/save")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String saveBook(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("book", book);
@@ -53,12 +56,14 @@ public class BookController {
     }
 
     @GetMapping("/delete/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteBook(@PathVariable("id") Long id, Model model) {
         bookRepository.deleteById(id);
         return "redirect:../booklist";
     }
 
     @GetMapping("/edit/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String editBook(@PathVariable("id") Long id, Model model) {
         model.addAttribute("book", bookRepository.findById(id));
         model.addAttribute("categories", categoryRepository.findAll());
@@ -66,6 +71,7 @@ public class BookController {
     }
 
     @PostMapping("/saveedited")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String saveEditedBook(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("book", book);
