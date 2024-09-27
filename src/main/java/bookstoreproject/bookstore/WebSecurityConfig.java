@@ -19,6 +19,7 @@ public class WebSecurityConfig {
         public SecurityFilterChain configure(HttpSecurity http) throws Exception {
                 http
                                 .authorizeHttpRequests(authorize -> authorize
+                                                .requestMatchers("/login", "/signup", "/saveuser").permitAll()
                                                 .requestMatchers("/add", "/delete/**", "/edit/**").hasAuthority("ADMIN")
                                                 .anyRequest().authenticated())
                                 .formLogin(formlogin -> formlogin.loginPage("/login")
