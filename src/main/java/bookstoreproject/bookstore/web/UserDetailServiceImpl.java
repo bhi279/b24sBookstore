@@ -1,6 +1,5 @@
 package bookstoreproject.bookstore.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,7 +13,6 @@ import bookstoreproject.bookstore.domain.AppUserRepository;
 public class UserDetailServiceImpl implements UserDetailsService {
     private AppUserRepository appUserRepository;
 
-    @Autowired
     public UserDetailServiceImpl(AppUserRepository appUserRepository) {
         this.appUserRepository = appUserRepository;
     }

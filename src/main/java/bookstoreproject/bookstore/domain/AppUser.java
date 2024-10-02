@@ -1,7 +1,5 @@
 package bookstoreproject.bookstore.domain;
 
-import org.springframework.security.crypto.bcrypt.BCrypt;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

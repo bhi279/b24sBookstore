@@ -13,16 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import bookstoreproject.bookstore.domain.Book;
 import bookstoreproject.bookstore.domain.BookRepository;
-import bookstoreproject.bookstore.domain.CategoryRepository;
 
 @RestController
 public class RestBookController {
 
     @Autowired
     private BookRepository bookRepository;
-
-    @Autowired
-    private CategoryRepository categoryRepository;
 
     @GetMapping("/getbooks")
     public Iterable<Book> getBooks() {
