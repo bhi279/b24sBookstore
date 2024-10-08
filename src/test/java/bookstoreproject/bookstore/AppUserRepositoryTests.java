@@ -24,6 +24,7 @@ public class AppUserRepositoryTests {
         assertThat(appUser.getRole()).isEqualTo("USER");
     }
 
+    // Test to delete app users
     @Test
     public void deleteUserTest() {
         long repositorySize = appUserRepository.count();
@@ -34,8 +35,12 @@ public class AppUserRepositoryTests {
         assertThat(repositorySize).isEqualTo(appUserRepository.count());
     }
 
+    // Test to find app users by their usernames
     @Test
-    public void findByUsername() {
-        
+    public void findByUsernameTest() {
+        appUserRepository.save(new AppUser("testAppUser", "password", "USER"));
+        String username = appUserRepository.findByUsername("testAppUser").getUsername();
+
+        assertThat(username).isEqualTo("testAppUser");
     }
 }

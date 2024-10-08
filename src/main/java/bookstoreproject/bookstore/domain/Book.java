@@ -17,7 +17,7 @@ public class Book {
 
     // generates automatically a unique primary key for every new entity object
     // (from class material)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotBlank(message = "Title cannot be empty")
