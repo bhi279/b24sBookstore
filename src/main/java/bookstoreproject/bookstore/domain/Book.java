@@ -1,15 +1,18 @@
 package bookstoreproject.bookstore.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 
 @Entity
+@Table(name = "books")
 public class Book {
     // used for creating id column of the table
     // (from class material)
@@ -18,19 +21,28 @@ public class Book {
     // generates automatically a unique primary key for every new entity object
     // (from class material)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, updatable = false)
     private long id;
 
+    @Column(name = "title", nullable = false)
     @NotBlank(message = "Title cannot be empty")
     private String title;
 
-    private String author, isbn;
+    @Column(name = "author", nullable = false)
+    private String author;
+
+    @Column(name = "isbn", nullable = false)
+    private String isbn;
+
+    @Column(name = "publication_year", nullable = false)
     private int publicationYear;
 
+    @Column(name = "price", nullable = false)
     @Positive(message = "Price cannot be less than 0")
     private double price;
 
     @ManyToOne
-    @JoinColumn(name = "categoryId")
+    @JoinColumn(name = "category_id")
     private Category category;
 
     public Book() {
